@@ -14,6 +14,7 @@ connect.then((db) => {
         description: 'Test'
     })
     .then((dish) => {
+        console.log('Created!')
         console.log(dish);
         
         return Dishes.findByIdAndUpdate(dish._id, {
@@ -24,17 +25,19 @@ connect.then((db) => {
         .exec();
     })
     .then((dish) => {
+        console.log('Updated!')
         console.log(dish);
 
         dish.comments.push({
             rating: 5,
-            comment: "I'm getting a sinking feeling!",
+            comment: 'I\'m getting a sinking feeling!',
             author: 'Leonardo di Carpaccio'
         });
 
         return dish.save();
     })
     .then((dish) => {
+        console.log('Pushed')
         console.log(dish);
 
         return Dishes.remove({});
